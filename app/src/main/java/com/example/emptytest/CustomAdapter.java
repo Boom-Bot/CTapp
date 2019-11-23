@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.GridLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 public class CustomAdapter extends BaseAdapter {
     Context context;
     int bgs[];
+
     LayoutInflater inflater;
     public CustomAdapter(Context applicationContext, int[] bgs){
         this.context = applicationContext;
@@ -36,12 +38,19 @@ public class CustomAdapter extends BaseAdapter {
         @Override
         public View getView(int index, View view, ViewGroup viewGroup) {
             ImageView i = new ImageView(context);
-
             i.setImageResource(bgs[index]);
-
-
             i.setScaleType(ImageView.ScaleType.FIT_XY);
+            //To change grid cells into squares dynamically
+            GridView g = (GridView)viewGroup;
+            int size = g.getColumnWidth();
+            i.setLayoutParams (new GridView.LayoutParams(size,size));
             return i;
+
+
+
+
+
         }
+
     }
 
